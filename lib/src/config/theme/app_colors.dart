@@ -22,5 +22,12 @@ class AppColors {
   static const Color bottomNavActiveIconColor = Color(0xFF3D8DFF);
   static const Color bottomNavNoActiveIconColor = Color(0xFFA2A0B3);
 
+  static const Color sentColor = Color(0xFFFF9C27);
+  static const Color progressColor = Color(0xFF2A97FC);
+  static const Color completesColor = Color(0xFF48EB1F);
+
   static const Color bottomLineColor = Color(0xFFF7D17F);
+  static const Color profileContainerColor = Color(0xFF46438C);
+  
+  static const Color dividerColor =Color(0xFFA2A0B3);
 }

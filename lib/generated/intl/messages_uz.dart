@@ -24,11 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "akkauntingizMavjudEmasmi":
             MessageLookupByLibrary.simpleMessage("Akkauntingiz mavjud emasmi?"),
+        "all": MessageLookupByLibrary.simpleMessage("Barchasi"),
         "app_name": MessageLookupByLibrary.simpleMessage("Aloqa nazorat"),
         "by_enter": MessageLookupByLibrary.simpleMessage("orqali kirish"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "forgot_password":
             MessageLookupByLibrary.simpleMessage("Parolni unutdingizmi?"),
+        "ijrodagi": MessageLookupByLibrary.simpleMessage("Ijrodagi"),
         "intro_desc_1": MessageLookupByLibrary.simpleMessage(
             "Mobil ilovadan foydalanish uchun ID.gov.uz tizimi orqali avtorizatsiyadan oʻting yoki mavjud profilingiz orqali tizimga kiring"),
         "intro_desc_2": MessageLookupByLibrary.simpleMessage(
@@ -45,9 +47,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "Muammo yechilishi bo’yicha natijani kuting"),
         "intro_title_4": MessageLookupByLibrary.simpleMessage(
             "Natijani ko’ring va baholang"),
+        "javob": MessageLookupByLibrary.simpleMessage("Javob"),
         "login": MessageLookupByLibrary.simpleMessage("Kirish"),
         "main": MessageLookupByLibrary.simpleMessage("Asosiy"),
+        "malumot": MessageLookupByLibrary.simpleMessage("Ma\'lumot"),
+        "meningMurojaatlarim":
+            MessageLookupByLibrary.simpleMessage("Mening murojaatlarim"),
         "mid_name": MessageLookupByLibrary.simpleMessage("Sharifi"),
+        "muammoTuriniTanlang":
+            MessageLookupByLibrary.simpleMessage("Muammo turini tanlang"),
+        "muammoingizgaTegishliBolimniTanlang":
+            MessageLookupByLibrary.simpleMessage(
+                "Muammoingizga tegishli bo’limni tanlang"),
+        "murojaat": MessageLookupByLibrary.simpleMessage("Murojaat"),
         "name": MessageLookupByLibrary.simpleMessage("Ism"),
         "next": MessageLookupByLibrary.simpleMessage("Keyingisi"),
         "oz": MessageLookupByLibrary.simpleMessage("O\'zbek"),
@@ -59,8 +71,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "royxatdanOtish":
             MessageLookupByLibrary.simpleMessage("Ro\'yxatdan o\'tish"),
         "ru": MessageLookupByLibrary.simpleMessage("Русский"),
+        "shaxsiyKabinet":
+            MessageLookupByLibrary.simpleMessage("Shaxsiy kabinet"),
         "surname": MessageLookupByLibrary.simpleMessage("Familiya"),
         "uz_com":
-            MessageLookupByLibrary.simpleMessage("O\'zkomnazorat inspeksiyasi")
+            MessageLookupByLibrary.simpleMessage("O\'zkomnazorat inspeksiyasi"),
+        "yakunlangan": MessageLookupByLibrary.simpleMessage("Yakunlangan")
       };
 }

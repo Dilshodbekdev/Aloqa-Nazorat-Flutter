@@ -1,10 +1,12 @@
 import 'package:aloqa_nazorat/src/config/routes/names.dart';
-import 'package:aloqa_nazorat/src/features/presentation/auth/language/language_page.dart';
-import 'package:aloqa_nazorat/src/features/presentation/auth/login/login_page.dart';
-import 'package:aloqa_nazorat/src/features/presentation/auth/register/register_page.dart';
-import 'package:aloqa_nazorat/src/features/presentation/auth/slider/slider_page.dart';
-import 'package:aloqa_nazorat/src/features/presentation/auth/splash/splash_page.dart';
-import 'package:aloqa_nazorat/src/features/presentation/main/main_page.dart';
+import 'package:aloqa_nazorat/src/features/auth/presentation/pages/language_page.dart';
+import 'package:aloqa_nazorat/src/features/auth/presentation/pages/login_page.dart';
+import 'package:aloqa_nazorat/src/features/auth/presentation/pages/register_page.dart';
+import 'package:aloqa_nazorat/src/features/auth/presentation/pages/slider_page.dart';
+import 'package:aloqa_nazorat/src/features/auth/presentation/pages/splash_page.dart';
+import 'package:aloqa_nazorat/src/features/home/presentation/pages/problems_page.dart';
+import 'package:aloqa_nazorat/src/features/main/main_page.dart';
+import 'package:aloqa_nazorat/src/features/reference/presentation/pages/reference_info_page.dart';
 import 'package:flutter/material.dart';
 
 class AppPages {
@@ -16,6 +18,8 @@ class AppPages {
       PageEntity(route: AppRoutes.LOGIN, page: const LoginPage()),
       PageEntity(route: AppRoutes.REGISTER, page: const RegisterPage()),
       PageEntity(route: AppRoutes.MAIN, page: const MainPage()),
+      PageEntity(route: AppRoutes.PROBLEMS, page: const ProblemsPage()),
+      PageEntity(route: AppRoutes.REFERENCE_INFO, page: const ReferenceInfoPage()),
     ];
   }
 

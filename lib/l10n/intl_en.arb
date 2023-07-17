@@ -26,5 +26,15 @@
   "by_enter": "orqali kirish",
   "login": "Kirish",
   "royxatdanOtish": "Ro'yxatdan o'tish",
-  "akkauntingizMavjudEmasmi": "Akkauntingiz mavjud emasmi?"
+  "akkauntingizMavjudEmasmi": "Akkauntingiz mavjud emasmi?",
+  "muammoingizgaTegishliBolimniTanlang": "Muammoingizga tegishli bo’limni tanlang",
+  "meningMurojaatlarim": "Mening murojaatlarim",
+  "all": "Barchasi",
+  "ijrodagi": "Ijrodagi",
+  "yakunlangan": "Yakunlangan",
+  "shaxsiyKabinet": "Shaxsiy kabinet",
+  "muammoTuriniTanlang": "Muammo turini tanlang",
+  "murojaat": "Murojaat",
+  "malumot": "Ma'lumot",
+  "javob": "Javob"
 }

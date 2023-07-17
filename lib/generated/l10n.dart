@@ -329,6 +329,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Muammoingizga tegishli bo’limni tanlang`
+  String get muammoingizgaTegishliBolimniTanlang {
+    return Intl.message(
+      'Muammoingizga tegishli bo’limni tanlang',
+      name: 'muammoingizgaTegishliBolimniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mening murojaatlarim`
+  String get meningMurojaatlarim {
+    return Intl.message(
+      'Mening murojaatlarim',
+      name: 'meningMurojaatlarim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Barchasi`
+  String get all {
+    return Intl.message(
+      'Barchasi',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ijrodagi`
+  String get ijrodagi {
+    return Intl.message(
+      'Ijrodagi',
+      name: 'ijrodagi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yakunlangan`
+  String get yakunlangan {
+    return Intl.message(
+      'Yakunlangan',
+      name: 'yakunlangan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shaxsiy kabinet`
+  String get shaxsiyKabinet {
+    return Intl.message(
+      'Shaxsiy kabinet',
+      name: 'shaxsiyKabinet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Muammo turini tanlang`
+  String get muammoTuriniTanlang {
+    return Intl.message(
+      'Muammo turini tanlang',
+      name: 'muammoTuriniTanlang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Murojaat`
+  String get murojaat {
+    return Intl.message(
+      'Murojaat',
+      name: 'murojaat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ma'lumot`
+  String get malumot {
+    return Intl.message(
+      'Ma\'lumot',
+      name: 'malumot',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Javob`
+  String get javob {
+    return Intl.message(
+      'Javob',
+      name: 'javob',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
