@@ -10,7 +10,7 @@ final GetIt locator = GetIt.instance;
 
 Future<void> initializeDependencies() async {
   locator.registerSingleton<Dio>(Dio(BaseOptions(
-      baseUrl: "",
+      baseUrl: "https://xn.technocorp.uz",
       contentType: "",
       receiveDataWhenStatusError: true,
       connectTimeout: const Duration(seconds: 60 * 1000),

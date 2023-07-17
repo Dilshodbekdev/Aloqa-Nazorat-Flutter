@@ -43,19 +43,19 @@ class Data {
 
   Data(
       {this.id,
-        this.name,
-        this.email,
-        this.createdAt,
-        this.updatedAt,
-        this.firstName,
-        this.lastName,
-        this.phone,
-        this.code,
-        this.codeVerifiedAt,
-        this.isVerified,
-        this.deletedAt,
-        this.photo,
-        this.midName});
+      this.name,
+      this.email,
+      this.createdAt,
+      this.updatedAt,
+      this.firstName,
+      this.lastName,
+      this.phone,
+      this.code,
+      this.codeVerifiedAt,
+      this.isVerified,
+      this.deletedAt,
+      this.photo,
+      this.midName});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];

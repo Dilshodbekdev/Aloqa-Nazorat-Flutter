@@ -19,7 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [BlocProvider(create: (context) => locator<AppCubit>())],
+        providers: [
+          BlocProvider(
+            create: (context) => locator<AppCubit>(),
+          ),
+        ],
         child: BlocBuilder<AppCubit, AppState>(
           builder: (context, state) {
             return ScreenUtilInit(
