@@ -1,10 +1,12 @@
 import 'package:aloqa_nazorat/generated/l10n.dart';
+import 'package:aloqa_nazorat/src/config/components/app_elevated_button.dart';
+import 'package:aloqa_nazorat/src/config/components/text_field_components.dart';
 import 'package:aloqa_nazorat/src/config/routes/routes.dart';
-import 'package:aloqa_nazorat/src/config/theme/app_colors.dart';
-import 'package:aloqa_nazorat/src/features/auth/presentation/widgets/register_page_widgets.dart';
-import 'package:aloqa_nazorat/src/features/auth/presentation/widgets/slider_page_widgets.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:aloqa_nazorat/src/core/app_state/cubit/app_cubit.dart';
+import 'package:aloqa_nazorat/src/features/auth/data/bodies/register_body.dart';
+import 'package:aloqa_nazorat/src/features/auth/presentation/manager/auth_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -14,181 +16,300 @@ class RegisterPage extends StatefulWidget {
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+class _RegisterPageState extends State<RegisterPage> {
+  final nameCon = TextEditingController();
+  final surnameCon = TextEditingController();
+  final midNameCon = TextEditingController();
+  final passwordCon = TextEditingController();
+  final phoneCon = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this);
-  }
+  bool _passwordVisible = true;
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  bool _errorName = false;
+  bool _errorSurname = false;
+  bool _errorMidName = false;
+  bool _errorPassword = false;
+  bool _errorPhone = false;
+
+  late final bloc = context.read<AuthBloc>();
+
+  snackBar(String? message) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message!),
+        duration: const Duration(seconds: 2),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(children: [
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/img_bg_night.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: Column(
-              children: [
-                SizedBox(height: 50.h),
-                Image.asset(
-                  'assets/images/logo_uz.png',
-                  height: 60.h,
-                ),
-                SizedBox(height: 16.h),
-                Text(S.of(context).register,
-                    style: TextStyle(
-                        fontSize: 32.sp,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.textColorDark)),
-                SizedBox(
-                  height: 10.h,
-                ),
-                AppTextField(
-                  label: S.of(context).name,
-                  prefixIcon: CupertinoIcons.person,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                AppTextField(
-                  label: S.of(context).surname,
-                  prefixIcon: CupertinoIcons.person,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                AppTextField(
-                  label: S.of(context).mid_name,
-                  prefixIcon: CupertinoIcons.person,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                AppTextField(
-                  label: S.of(context).email,
-                  prefixIcon: Icons.email_outlined,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(S.of(context).password,
-                        style:
-                            TextStyle(fontSize: 14.sp, color: Colors.white))),
-                SizedBox(height: 5.h),
-                Container(
-                  height: 50.h,
+      body: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state.isRegisterVerified) {
+            Navigator.of(context).pushNamed(AppRoutes.CONFIRMATION);
+          }
+          if (state.hasError) {
+            snackBar(state.errorMessage);
+          }
+        },
+        builder: (context, state) {
+          return Stack(children: [
+            BlocBuilder<AppCubit, AppState>(
+              builder: (context, state1) {
+                final bg = state1.isDark
+                    ? 'assets/images/img_auth_bg_night.png'
+                    : 'assets/images/img_auth_bg_light.png';
+                return Container(
                   decoration: BoxDecoration(
-                      color: AppColors.mainColorDark,
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(15.h)),
-                  child: TextField(
-                    onChanged: (value) {},
-                    style: TextStyle(color: AppColors.textColorDark),
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintStyle: TextStyle(color: AppColors.textColorDark),
-                      hintText: S.of(context).password,
-                      suffix: IconButton(
-                        onPressed: () {},
-                        icon:
-                            Icon(true ? Icons.remove_red_eye : Icons.password),
-                        color: AppColors.textColorDark,
-                      ),
-                      border: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent)),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent)),
-                      disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent)),
+                    image: DecorationImage(
+                      image: AssetImage(bg),
+                      fit: BoxFit.cover,
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      S.of(context).phone_number,
-                      style: TextStyle(color: Colors.white, fontSize: 14.sp),
-                    )),
-                SizedBox(height: 5.h),
-                Container(
-                  height: 50.h,
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.h),
-                      color: AppColors.mainColorDark,
-                      border: Border.all(width: 1, color: Colors.white)),
-                  child: Row(
-                    children: [
-                      Text('+998',
-                          style:
-                              TextStyle(fontSize: 16.sp, color: Colors.white)),
-                      Expanded(
-                        child: TextField(
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) {},
-                          style:
-                              TextStyle(color: Colors.white, fontSize: 16.sp),
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.transparent)),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.transparent)),
-                            disabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.transparent)),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.transparent)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20.h,),
-                GestureDetector(
-                  onTap: (){
-                    Navigator.of(context).pushNamed(AppRoutes.MAIN);
-                  },
-                    child: AppButton(text: S.of(context).register)),
-                SizedBox(height: 16.h,)
-              ],
+                );
+              },
             ),
-          ),
-        ),
-      ]),
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: Column(
+                  children: [
+                    50.verticalSpace,
+                    Image.asset(
+                      'assets/images/img_logo_uz.png',
+                      height: 60.h,
+                    ),
+                    16.verticalSpace,
+                    Text(S.of(context).register,
+                        style: TextStyle(
+                          fontSize: 32.sp,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    16.verticalSpace,
+                    //name
+                    TextField(
+                      controller: nameCon,
+                      onChanged: (value) {
+                        setState(() {
+                          _errorName = false;
+                        });
+                      },
+                      style: TextStyle(fontSize: 16.sp),
+                      cursorColor: Theme.of(context).colorScheme.tertiary,
+                      decoration: InputDecoration(
+                        fillColor: Theme.of(context).primaryColor,
+                        filled: true,
+                        errorStyle: TextStyle(height: 0.h),
+                        errorText: _errorName ? "" : null,
+                        prefixIcon: const Icon(
+                          Icons.person,
+                        ),
+                        labelText: S.of(context).name,
+                        labelStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary),
+                        border: appTextFiledBorder(context),
+                        enabledBorder: appTextFiledBorder(context),
+                        disabledBorder: appTextFiledBorder(context),
+                        focusedBorder: appTextFiledBorder(context),
+                        errorBorder: appTextFiledErrorBorder(),
+                      ),
+                    ),
+                    16.verticalSpace,
+                    //surname
+                    TextField(
+                      controller: surnameCon,
+                      onChanged: (value) {
+                        setState(() {
+                          _errorSurname = false;
+                        });
+                      },
+                      style: TextStyle(fontSize: 16.sp),
+                      cursorColor: Theme.of(context).colorScheme.tertiary,
+                      decoration: InputDecoration(
+                        fillColor: Theme.of(context).primaryColor,
+                        filled: true,
+                        errorStyle: TextStyle(height: 0.h),
+                        errorText: _errorSurname ? "" : null,
+                        prefixIcon: const Icon(
+                          Icons.person,
+                        ),
+                        labelText: S.of(context).surname,
+                        labelStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary),
+                        border: appTextFiledBorder(context),
+                        enabledBorder: appTextFiledBorder(context),
+                        disabledBorder: appTextFiledBorder(context),
+                        focusedBorder: appTextFiledBorder(context),
+                        errorBorder: appTextFiledErrorBorder(),
+                      ),
+                    ),
+                    16.verticalSpace,
+                    //midName
+                    TextField(
+                      controller: midNameCon,
+                      onChanged: (value) {
+                        setState(() {
+                          _errorMidName = false;
+                        });
+                      },
+                      style: TextStyle(fontSize: 16.sp),
+                      cursorColor: Theme.of(context).colorScheme.tertiary,
+                      decoration: InputDecoration(
+                        fillColor: Theme.of(context).primaryColor,
+                        filled: true,
+                        errorStyle: TextStyle(height: 0.h),
+                        errorText: _errorMidName ? "" : null,
+                        prefixIcon: const Icon(
+                          Icons.person,
+                        ),
+                        labelText: S.of(context).mid_name,
+                        labelStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary),
+                        border: appTextFiledBorder(context),
+                        enabledBorder: appTextFiledBorder(context),
+                        disabledBorder: appTextFiledBorder(context),
+                        focusedBorder: appTextFiledBorder(context),
+                        errorBorder: appTextFiledErrorBorder(),
+                      ),
+                    ),
+                    16.verticalSpace,
+                    //password
+                    TextField(
+                      onChanged: (value) {
+                        setState(() {
+                          _errorPassword = false;
+                        });
+                      },
+                      controller: passwordCon,
+                      style: TextStyle(fontSize: 16.sp),
+                      obscureText: _passwordVisible,
+                      cursorColor: Theme.of(context).colorScheme.tertiary,
+                      decoration: InputDecoration(
+                          hintStyle: TextStyle(fontSize: 16.sp),
+                          hintText: S.of(context).password,
+                          filled: true,
+                          fillColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                              color: Theme.of(context).colorScheme.tertiary),
+                          labelText: S.of(context).password,
+                          prefixIcon: const Icon(
+                            Icons.lock,
+                          ),
+                          errorStyle: TextStyle(height: 0.h),
+                          errorText: _errorPassword ? "" : null,
+                          suffix: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _passwordVisible = !_passwordVisible;
+                              });
+                            },
+                            child: Icon(
+                              _passwordVisible
+                                  ? Icons.remove_red_eye
+                                  : Icons.password,
+                            ),
+                          ),
+                          border: appTextFiledBorder(context),
+                          enabledBorder: appTextFiledBorder(context),
+                          disabledBorder: appTextFiledBorder(context),
+                          focusedBorder: appTextFiledBorder(context),
+                          errorBorder: appTextFiledErrorBorder()),
+                    ),
+                    16.verticalSpace,
+                    //phone
+                    TextField(
+                      keyboardType: TextInputType.number,
+                      controller: phoneCon,
+                      onChanged: (value) {
+                        setState(() {
+                          _errorPhone = false;
+                        });
+                      },
+                      style: TextStyle(fontSize: 16.sp),
+                      cursorColor: Theme.of(context).colorScheme.tertiary,
+                      decoration: InputDecoration(
+                        fillColor: Theme.of(context).primaryColor,
+                        filled: true,
+                        errorStyle: TextStyle(height: 0.h),
+                        errorText: _errorPhone ? "" : null,
+                        prefixText: '+998 ',
+                        prefixIcon: const Icon(Icons.phone),
+                        prefixStyle: TextStyle(fontSize: 16.sp),
+                        hintText: "999 99 99",
+                        labelText: S.of(context).phone_number,
+                        labelStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary),
+                        border: appTextFiledBorder(context),
+                        enabledBorder: appTextFiledBorder(context),
+                        disabledBorder: appTextFiledBorder(context),
+                        focusedBorder: appTextFiledBorder(context),
+                        errorBorder: appTextFiledErrorBorder(),
+                      ),
+                    ),
+                    20.verticalSpace,
+                    state.isLoading
+                        ? CircularProgressIndicator(
+                            color: Theme.of(context).colorScheme.tertiary,
+                          )
+                        : AppElevatedButton(
+                            text: S.of(context).register,
+                            onClick: () {
+                              {
+                                //Navigator.of(context).pushNamed(AppRoutes.MAIN);
+                                if (nameCon.text.isNotEmpty &&
+                                    surnameCon.text.isNotEmpty &&
+                                    midNameCon.text.isNotEmpty &&
+                                    passwordCon.text.isNotEmpty &&
+                                    phoneCon.text.isNotEmpty) {
+                                  bloc.register(
+                                      body: RegisterBody(
+                                          firstName: nameCon.text,
+                                          lastName: surnameCon.text,
+                                          midName: midNameCon.text,
+                                          phone: phoneCon.text,
+                                          password: passwordCon.text,
+                                          deviceKey: "xfgb"));
+                                } else {
+                                  if (nameCon.text.isEmpty) {
+                                    setState(() {
+                                      _errorName = true;
+                                    });
+                                  }
+                                  if (surnameCon.text.isEmpty) {
+                                    setState(() {
+                                      _errorSurname = true;
+                                    });
+                                  }
+                                  if (midNameCon.text.isEmpty) {
+                                    setState(() {
+                                      _errorMidName = true;
+                                    });
+                                  }
+                                  if (passwordCon.text.isEmpty) {
+                                    setState(() {
+                                      _errorPassword = true;
+                                    });
+                                  }
+                                  if (phoneCon.text.isEmpty) {
+                                    setState(() {
+                                      _errorPhone = true;
+                                    });
+                                  }
+                                }
+                                //bloc.register(body: RegisterBody());
+                              }
+                            })
+                  ],
+                ),
+              ),
+            ),
+          ]);
+        },
+      ),
     );
   }
 }

@@ -22,60 +22,195 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "akkauntdanChiqish":
+            MessageLookupByLibrary.simpleMessage("Аккаунтдан чиқиш"),
         "akkauntingizMavjudEmasmi":
-            MessageLookupByLibrary.simpleMessage("Akkauntingiz mavjud emasmi?"),
-        "all": MessageLookupByLibrary.simpleMessage("Barchasi"),
+            MessageLookupByLibrary.simpleMessage("Аккаунтингиз мавжуд эмасми?"),
+        "all": MessageLookupByLibrary.simpleMessage("Барчаси"),
         "app_name": MessageLookupByLibrary.simpleMessage("Aloqa nazorat"),
-        "by_enter": MessageLookupByLibrary.simpleMessage("orqali kirish"),
+        "assalomuAleykum":
+            MessageLookupByLibrary.simpleMessage("Ассалому алайкум,"),
+        "barchaMaydonlarniToldiring": MessageLookupByLibrary.simpleMessage(
+            "Барча майдонларни тўлдиринг!"),
+        "bildirishnomalar":
+            MessageLookupByLibrary.simpleMessage("Билдиришнома"),
+        "biriktirilganFayllar":
+            MessageLookupByLibrary.simpleMessage("Бириктирилган файллар"),
+        "boshqaMasalalar":
+            MessageLookupByLibrary.simpleMessage("Бошқа масалалар."),
+        "by_enter": MessageLookupByLibrary.simpleMessage("орқали кириш"),
+        "callCenter1111":
+            MessageLookupByLibrary.simpleMessage("Call марказ\n1144"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "en": MessageLookupByLibrary.simpleMessage("Ўзбек"),
+        "faylBiriktirish":
+            MessageLookupByLibrary.simpleMessage("Файл бириктириш"),
         "forgot_password":
-            MessageLookupByLibrary.simpleMessage("Parolni unutdingizmi?"),
-        "ijrodagi": MessageLookupByLibrary.simpleMessage("Ijrodagi"),
-        "intro_desc_1": MessageLookupByLibrary.simpleMessage(
-            "Mobil ilovadan foydalanish uchun ID.gov.uz tizimi orqali avtorizatsiyadan oʻting yoki mavjud profilingiz orqali tizimga kiring"),
-        "intro_desc_2": MessageLookupByLibrary.simpleMessage(
-            "Axborotlashtirish va telekommunikatsiyalar sohasida mavjud muammolar haqida xabar bering"),
-        "intro_desc_3": MessageLookupByLibrary.simpleMessage(
-            "Axborotlashtirish va telekommunikatsiyalar sohasida mavjud muammolar haqida xabar bering"),
-        "intro_desc_4": MessageLookupByLibrary.simpleMessage(
-            "Sizning muammongiz xal etilishi bo’yicha natija bilan tanishing va tizimga o’z bahoingizni qo’ying"),
-        "intro_title_1":
-            MessageLookupByLibrary.simpleMessage("Ro’yxatdan o’ting"),
-        "intro_title_2": MessageLookupByLibrary.simpleMessage(
-            "Muammo bo’yicha xabar bering"),
-        "intro_title_3": MessageLookupByLibrary.simpleMessage(
-            "Muammo yechilishi bo’yicha natijani kuting"),
-        "intro_title_4": MessageLookupByLibrary.simpleMessage(
-            "Natijani ko’ring va baholang"),
-        "javob": MessageLookupByLibrary.simpleMessage("Javob"),
-        "login": MessageLookupByLibrary.simpleMessage("Kirish"),
-        "main": MessageLookupByLibrary.simpleMessage("Asosiy"),
-        "malumot": MessageLookupByLibrary.simpleMessage("Ma\'lumot"),
-        "meningMurojaatlarim":
-            MessageLookupByLibrary.simpleMessage("Mening murojaatlarim"),
-        "mid_name": MessageLookupByLibrary.simpleMessage("Sharifi"),
-        "muammoTuriniTanlang":
-            MessageLookupByLibrary.simpleMessage("Muammo turini tanlang"),
-        "muammoingizgaTegishliBolimniTanlang":
+            MessageLookupByLibrary.simpleMessage("Паролни унутдингизми?"),
+        "foydalanishQollanmasi":
+            MessageLookupByLibrary.simpleMessage("Фойдаланиш қўлланмаси"),
+        "foydalanuvchiTizimdanOchirilgandanSongUningShaxsiyMalumotlariVaMurojaatlarBilan":
             MessageLookupByLibrary.simpleMessage(
-                "Muammoingizga tegishli bo’limni tanlang"),
-        "murojaat": MessageLookupByLibrary.simpleMessage("Murojaat"),
-        "name": MessageLookupByLibrary.simpleMessage("Ism"),
-        "next": MessageLookupByLibrary.simpleMessage("Keyingisi"),
+                "Фойдаланувчи тизимдан ўчирилгандан сўнг, унинг шахсий маълумотлари ва мурожаатлар билан боғлиқ барча маълумотлар тизимидан ўчирилади. Aloqa nazorati мобиль иловаси қайта юклангандан сўнг фойдаланувчининг аввалги шахсий маълумотлари ва мурожаатлар билан боғлиқ маълумотлар қайта тикланмайди."),
+        "foydalanuvchiniTizimdanOchirishFoydalanuvchiningQarorigaQarabAmalgaOshiriladiHurmatliFoydalanuvchi":
+            MessageLookupByLibrary.simpleMessage(
+                "Фойдаланувчини тизимдан ўчириш фойдаланувчининг қарорига қараб амалга оширилади. Ҳурматли фойдаланувчи, Aloqa nazorati мобиль иловасини ўчиришдан аввал ўчириш сабабларини кўрсатинг:"),
+        "galereya": MessageLookupByLibrary.simpleMessage("Галерея"),
+        "ha": MessageLookupByLibrary.simpleMessage("Ҳа"),
+        "haqiqatdanChiqishniXohlaysizmi": MessageLookupByLibrary.simpleMessage(
+            "Ҳақиқатдан чиқишни хоҳлайсизми?"),
+        "hisobniOchirish": MessageLookupByLibrary.simpleMessage(
+            "Фойдаланувчини тизимдан ўчириш"),
+        "hurmatliFoydalanuvchiIltimosTizimgaQaytadanKiring":
+            MessageLookupByLibrary.simpleMessage(
+                "Ҳурматли фойдаланувчи, илтимос, тизимга қайта киринг"),
+        "hurmatliFoydalanuvchiMurojaatingizniKoribChiqishnitaminlashUchunOzManzilingizniTogriVa":
+            MessageLookupByLibrary.simpleMessage(
+                "Ҳурматли фойдаланувчи! Мурожаатингизни кўриб чиқишни таъминлаш учун ўз манзилингизни тўғри ва аниқ кўрсатинг."),
+        "ijroEtishVaqti":
+            MessageLookupByLibrary.simpleMessage("Ижро этилиш вақти"),
+        "ijroQilinmoqda":
+            MessageLookupByLibrary.simpleMessage("Ижро қилинмоқда"),
+        "ijrochilar": MessageLookupByLibrary.simpleMessage("Ижрочилар"),
+        "ijrochiningIzohi":
+            MessageLookupByLibrary.simpleMessage("Ижрочининг изоҳи"),
+        "ijrodagi": MessageLookupByLibrary.simpleMessage("Ижродаги"),
+        "ijrogaYuborildi":
+            MessageLookupByLibrary.simpleMessage("Ижрога юборилди"),
+        "ilovaBilanBogliqSabablarIlovaningKorishiTushunarsizIlovadanFoydalanishQiyin":
+            MessageLookupByLibrary.simpleMessage(
+                "Илова билан боғлиқ сабаблар (илованинг кўриши тушунарсиз, иловадан фойдаланиш қийин ва б.);"),
+        "ilovaHaqida": MessageLookupByLibrary.simpleMessage("Илова ҳақида"),
+        "ilovaKorinishi":
+            MessageLookupByLibrary.simpleMessage("Илова кўриниши"),
+        "ilovaTili": MessageLookupByLibrary.simpleMessage("Илова тили"),
+        "intro_desc_1": MessageLookupByLibrary.simpleMessage(
+            "Мобиль иловадан фойдаланиш учун авторизациядан ўтинг ёки мавжуд профилингиз орқали тизимга киринг"),
+        "intro_desc_2": MessageLookupByLibrary.simpleMessage(
+            "Ахборотлаштириш ва телекоммуникациялар соҳасида мавжуд муаммолар ҳақида хабар беринг"),
+        "intro_desc_3": MessageLookupByLibrary.simpleMessage(
+            "\"Ўзкомназорат\" инспекцияси томонидан муаммо ва мурожаатингиз бўйича расмий жавоб берилишини кутинг"),
+        "intro_desc_4": MessageLookupByLibrary.simpleMessage(
+            "Сизнинг муаммоингиз ҳал этилиши бўйича натижа билан танишинг ва тизимга ўз баҳоингизни қўйинг"),
+        "intro_title_1":
+            MessageLookupByLibrary.simpleMessage("Рўйхатдан ўтинг"),
+        "intro_title_2":
+            MessageLookupByLibrary.simpleMessage("Муаммо бўйича хабар беринг"),
+        "intro_title_3": MessageLookupByLibrary.simpleMessage(
+            "Муаммо ечилиши бўйича натижани кутинг"),
+        "intro_title_4":
+            MessageLookupByLibrary.simpleMessage("натижани кўринг"),
+        "javob": MessageLookupByLibrary.simpleMessage("Жавоб"),
+        "kamera": MessageLookupByLibrary.simpleMessage("Камера"),
+        "kochaNominiKiriting":
+            MessageLookupByLibrary.simpleMessage("Кўча номини киритинг"),
+        "kunduzgi": MessageLookupByLibrary.simpleMessage("кундузги"),
+        "login": MessageLookupByLibrary.simpleMessage("Кириш"),
+        "main": MessageLookupByLibrary.simpleMessage("Асосий"),
+        "malumot": MessageLookupByLibrary.simpleMessage("Маълумот"),
+        "manzilniKiriting":
+            MessageLookupByLibrary.simpleMessage("Манзилни киритинг"),
+        "meningMurojaatlarim":
+            MessageLookupByLibrary.simpleMessage("Менинг мурожаатларим"),
+        "mfyOfyNominiKiriting":
+            MessageLookupByLibrary.simpleMessage("МФЙ (ОФЙ) номини киритинг"),
+        "mid_name": MessageLookupByLibrary.simpleMessage("Шарифи"),
+        "mobilRaqamniTasdiqlash":
+            MessageLookupByLibrary.simpleMessage("Мобиль рақамни тасдиқлаш"),
+        "mobilTelefonBilanBogliqSabablarTelefonningYoqolishiBoshqaOdamgaBerib":
+            MessageLookupByLibrary.simpleMessage(
+                "Мобиль телефон билан боғлиқ сабаблар (телефоннинг йўқолиши, бошқа одамга бериб юбориш, рақамнинг ўзгариши ва б.);"),
+        "muammoTuriniTanlang":
+            MessageLookupByLibrary.simpleMessage("Муаммо турини танланг"),
+        "muammoingizgaTegishliBolimniTanlang":
+            MessageLookupByLibrary.simpleMessage("Мурожаат йўналишини танланг"),
+        "murojaat": MessageLookupByLibrary.simpleMessage("Мурожаат"),
+        "murojaatHolati":
+            MessageLookupByLibrary.simpleMessage("Мурожаат ҳолати"),
+        "murojaatIjrogaYuborilganSana": MessageLookupByLibrary.simpleMessage(
+            "Мурожаат ижрога юборилган сана"),
+        "murojaatIjrosigaMasulBolimVaHududiyInspeksiya":
+            MessageLookupByLibrary.simpleMessage(
+                "Мурожаат ижросига масъул бўлим ва ҳудудий инспекция"),
+        "murojaatMatni": MessageLookupByLibrary.simpleMessage("Мурожаат матни"),
+        "murojaatTuri": MessageLookupByLibrary.simpleMessage("Мурожаат тури"),
+        "murojaatYaratildi":
+            MessageLookupByLibrary.simpleMessage("Мурожаат яратилди"),
+        "murojaatYaratilganSana":
+            MessageLookupByLibrary.simpleMessage("Мурожаат яратилган сана"),
+        "murojaatYuborish":
+            MessageLookupByLibrary.simpleMessage("Мурожаат юбориш"),
+        "murojaatniShakllantirish":
+            MessageLookupByLibrary.simpleMessage("Мурожаатни шакллантириш"),
+        "name": MessageLookupByLibrary.simpleMessage("Исм"),
+        "next": MessageLookupByLibrary.simpleMessage("Кейинги"),
         "oz": MessageLookupByLibrary.simpleMessage("O\'zbek"),
-        "password": MessageLookupByLibrary.simpleMessage("Parol"),
-        "phone_number": MessageLookupByLibrary.simpleMessage("Telefon raqami"),
-        "profile": MessageLookupByLibrary.simpleMessage("Profil"),
-        "references": MessageLookupByLibrary.simpleMessage("Murojaatlar"),
-        "register": MessageLookupByLibrary.simpleMessage("Ro\'yxatdan o\'tish"),
-        "royxatdanOtish":
-            MessageLookupByLibrary.simpleMessage("Ro\'yxatdan o\'tish"),
+        "ozgartirish": MessageLookupByLibrary.simpleMessage("Ўзгартириш"),
+        "parolMuvoffaqiyatliOzgartirildi": MessageLookupByLibrary.simpleMessage(
+            "Parol muvoffaqiyatli o\'zgartirildi"),
+        "parolingizniTiklashUchunRoyxatdanOtganTelefonRaqamingizniKiritingVaBiz":
+            MessageLookupByLibrary.simpleMessage(
+                "Паролингизни тиклаш учун рўйхатдан ўтган телефон рақамингизни киритинг ва биз сизга паролингизни тиклашга ёрдам берамиз"),
+        "parolniTasdiqlang":
+            MessageLookupByLibrary.simpleMessage("Паролни тасдиқланг"),
+        "parolniTasdiqlash":
+            MessageLookupByLibrary.simpleMessage("Паролни тасдиқлаш"),
+        "parolniTasdiqlashdaXatolikBor": MessageLookupByLibrary.simpleMessage(
+            "Parolni tasdiqlashda xatolik bor"),
+        "parolniTiklash":
+            MessageLookupByLibrary.simpleMessage("Паролни тиклаш"),
+        "password": MessageLookupByLibrary.simpleMessage("Пароль"),
+        "phone_number": MessageLookupByLibrary.simpleMessage("Телефон номер"),
+        "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
+        "qabulQilishgaYuborildi":
+            MessageLookupByLibrary.simpleMessage("Қабул қилишга юборилди"),
+        "qaytadanYuborish":
+            MessageLookupByLibrary.simpleMessage("Қайтадан юбориш"),
+        "qollabquvvatlashTelefoni":
+            MessageLookupByLibrary.simpleMessage("Қўллаб-қувватлаш телефони"),
+        "qoshimchaIzohQoldirish":
+            MessageLookupByLibrary.simpleMessage("Қўшимча изоҳ қолдириш"),
+        "raqamingizniTekshirishUchunSmsKodYubordikIltimosQuyidagiKodniKiriting":
+            MessageLookupByLibrary.simpleMessage(
+                "Рақамингизни текшириш учун SMS код юбордик. Илтимос, қуйидаги кодни киритинг"),
+        "rasmManbasiniTanlang":
+            MessageLookupByLibrary.simpleMessage("Расм манбасини танланг"),
+        "references": MessageLookupByLibrary.simpleMessage("Мурожаатлар"),
+        "register": MessageLookupByLibrary.simpleMessage("Рўйхатдан ўтиш"),
         "ru": MessageLookupByLibrary.simpleMessage("Русский"),
         "shaxsiyKabinet":
-            MessageLookupByLibrary.simpleMessage("Shaxsiy kabinet"),
-        "surname": MessageLookupByLibrary.simpleMessage("Familiya"),
+            MessageLookupByLibrary.simpleMessage("Шахсий кабинет"),
+        "shaxsiyMalumotlar":
+            MessageLookupByLibrary.simpleMessage("Шахсий маълумотлар"),
+        "sizningMurojatingizMuvaffaqiyatliRavishdaTizmgaYuborildi":
+            MessageLookupByLibrary.simpleMessage(
+                "Сизнинг мурожаатингиз муваффақиятли равишда тизимга юборилди"),
+        "sizningTelefonRaqamingizgaVaqtinchalikParolJonatildiTizmgaKirganingizdanSongAlbatta":
+            MessageLookupByLibrary.simpleMessage(
+                "Сизнинг телефон рақамингизга вақтинчалик пароль жўнатилди. Тизимга кирганингиздан сўнг албатта ўзгартиришни унутманг!"),
+        "sozlamalar": MessageLookupByLibrary.simpleMessage("Созламалар"),
+        "surname": MessageLookupByLibrary.simpleMessage("Фамилия"),
+        "telegramOrqaliMurojaat":
+            MessageLookupByLibrary.simpleMessage("Телеграм орқали мурожаат"),
+        "tugilganKun": MessageLookupByLibrary.simpleMessage("Туғилган кун"),
+        "tumanniTanlang":
+            MessageLookupByLibrary.simpleMessage("Туманни танланг"),
+        "tungi": MessageLookupByLibrary.simpleMessage("Тунги"),
+        "ulashish": MessageLookupByLibrary.simpleMessage("Улашиш"),
+        "uyRaqaminiKiriting":
+            MessageLookupByLibrary.simpleMessage("Уй рақамини киритинг"),
         "uz_com":
-            MessageLookupByLibrary.simpleMessage("O\'zkomnazorat inspeksiyasi"),
-        "yakunlangan": MessageLookupByLibrary.simpleMessage("Yakunlangan")
+            MessageLookupByLibrary.simpleMessage("Ўзкомназорат инспекцияси"),
+        "viloyatniTanlang":
+            MessageLookupByLibrary.simpleMessage("Вилоятни танланг"),
+        "yakunlandi": MessageLookupByLibrary.simpleMessage("Якунланди"),
+        "yakunlangan": MessageLookupByLibrary.simpleMessage("Якунланган"),
+        "yoq": MessageLookupByLibrary.simpleMessage("Йўқ"),
+        "yordam": MessageLookupByLibrary.simpleMessage("Ёрдам"),
+        "yuborish": MessageLookupByLibrary.simpleMessage("Юбориш"),
+        "yuklanganFaylHajmi10mbDanOshmasligiKerak":
+            MessageLookupByLibrary.simpleMessage(
+                "Юкланган файл ҳажми 10МБ дан ошмаслиги керак"),
+        "yuklanmoqda": MessageLookupByLibrary.simpleMessage("Yuklanmoqda...")
       };
 }

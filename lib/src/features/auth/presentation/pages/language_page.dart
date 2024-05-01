@@ -1,7 +1,11 @@
 import 'package:aloqa_nazorat/generated/l10n.dart';
+import 'package:aloqa_nazorat/src/config/components/app_elevated_button.dart';
 import 'package:aloqa_nazorat/src/config/routes/names.dart';
 import 'package:aloqa_nazorat/src/config/theme/app_colors.dart';
+import 'package:aloqa_nazorat/src/core/app_state/cubit/app_cubit.dart';
+import 'package:aloqa_nazorat/src/core/app_state/localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LanguagePage extends StatefulWidget {
@@ -13,18 +17,26 @@ class LanguagePage extends StatefulWidget {
 
 class _LanguagePageState extends State<LanguagePage> {
   String language = 'uz';
+  late final cubit = context.read<AppCubit>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(alignment: Alignment.center, children: [
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/img_bg_night.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
+        BlocBuilder<AppCubit, AppState>(
+          builder: (context, state) {
+            final bg = state.isDark
+                ? 'assets/images/img_auth_bg_night.png'
+                : 'assets/images/img_auth_bg_light.png';
+            return Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(bg),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            );
+          },
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -32,7 +44,7 @@ class _LanguagePageState extends State<LanguagePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset('assets/images/logo_uz.png', height: 90.h),
+              Image.asset('assets/images/img_logo_uz.png', height: 90.r),
               SizedBox(height: 16.h),
               Text(
                 textAlign: TextAlign.center,
@@ -57,12 +69,13 @@ class _LanguagePageState extends State<LanguagePage> {
                   setState(() {
                     language = 'uz';
                   });
+                  cubit.changeLocale(Localization.uz, 'uz');
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
                   height: 60.h,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.h),
+                      borderRadius: BorderRadius.circular(15.r),
                       color: AppColors.mainColorDark),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,15 +109,57 @@ class _LanguagePageState extends State<LanguagePage> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    language = 'ru';
+                    language = 'en';
                   });
-                  Navigator.of(context).pushNamed(AppRoutes.LOGIN);
+                  cubit.changeLocale(Localization.en, 'en');
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
                   height: 60.h,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.h),
+                      borderRadius: BorderRadius.circular(15.r),
+                      color: AppColors.mainColorDark),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/images/img_uz.png',
+                          ),
+                          SizedBox(width: 16.w),
+                          Text(
+                            S.of(context).en,
+                            style: TextStyle(
+                                color: AppColors.textColorDark,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w600),
+                          )
+                        ],
+                      ),
+                      if (language == 'en')
+                        Icon(
+                          Icons.check,
+                          size: 20.h,
+                          color: AppColors.textColorDark,
+                        )
+                    ],
+                  ),
+                ),
+              ),
+              16.verticalSpace,
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    language = 'ru';
+                  });
+                  cubit.changeLocale(Localization.ru, 'ru');
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  height: 60.h,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.r),
                       color: AppColors.mainColorDark),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,6 +189,10 @@ class _LanguagePageState extends State<LanguagePage> {
                   ),
                 ),
               ),
+              20.verticalSpace,
+              AppElevatedButton(text: S.of(context).next, onClick: (){
+                Navigator.of(context).pushNamed(AppRoutes.LOGIN);
+              })
             ],
           ),
         )

@@ -1,11 +1,18 @@
+import 'package:aloqa_nazorat/src/features/auth/data/bodies/confirmation_body.dart';
 import 'package:aloqa_nazorat/src/features/auth/data/bodies/login_body.dart';
+import 'package:aloqa_nazorat/src/features/auth/data/bodies/recover_password_body.dart';
+import 'package:aloqa_nazorat/src/features/auth/data/bodies/register_body.dart';
+import 'package:aloqa_nazorat/src/features/auth/data/bodies/resend_code_body.dart';
 import 'package:aloqa_nazorat/src/features/auth/data/models/login_model.dart';
+import 'package:aloqa_nazorat/src/features/auth/data/models/password_restore_model.dart';
+import 'package:aloqa_nazorat/src/features/auth/data/models/register_model.dart';
+import 'package:aloqa_nazorat/src/features/auth/data/models/resend_code_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'auth_api_service.g.dart';
 
-@RestApi(baseUrl: "https://xn.technocorp.uz/")
+@RestApi()
 abstract class AuthApiService {
   factory AuthApiService(Dio dio, {String baseUrl}) = _AuthApiService;
 
@@ -22,14 +29,19 @@ abstract class AuthApiService {
   Future<HttpResponse<LoginModel>> login(@Body() LoginBody body);
 
   @POST(_register)
-  Future<HttpResponse<String>> register(@Body() String string);
+  Future<HttpResponse<RegisterModel>> register(@Body() RegisterBody body);
 
   @POST(_activeProfile)
-  Future<HttpResponse<String>> activeProfile(@Body() String string);
+  Future<HttpResponse<LoginModel>> activeProfile(@Body() ConfirmationBody body);
 
   @POST(_resendCode)
-  Future<HttpResponse<String>> resendCode(@Body() String string);
+  Future<HttpResponse<ResendCodeModel>> resendCode(@Body() ResendCodeBody body);
+
+  @POST(_passwordRestore)
+  Future<HttpResponse<PasswordRestoreModel>> passwordRestore(
+      @Body() RecoverPasswordBody body);
 
   @GET(_oneId)
-  Future<HttpResponse<String>> loadDataUser(@Query("code") String code);
+  Future<HttpResponse<LoginModel>> loadDataUser(
+      @Query("code") String code, @Query("device_key") String deviceKey);
 }

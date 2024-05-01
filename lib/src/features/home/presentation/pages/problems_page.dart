@@ -1,67 +1,110 @@
-import 'package:aloqa_nazorat/generated/l10n.dart';
-import 'package:aloqa_nazorat/src/config/theme/app_colors.dart';
+import 'package:aloqa_nazorat/src/config/components/app_components.dart';
+import 'package:aloqa_nazorat/src/config/components/funs.dart';
+import 'package:aloqa_nazorat/src/config/routes/names.dart';
+import 'package:aloqa_nazorat/src/core/app_state/cubit/app_cubit.dart';
+import 'package:aloqa_nazorat/src/features/home/data/models/references_model.dart';
+import 'package:aloqa_nazorat/src/features/home/presentation/manager/home_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ProblemsPage extends StatelessWidget {
+class ProblemsPage extends StatefulWidget {
   const ProblemsPage({super.key});
 
   @override
+  State<ProblemsPage> createState() => _ProblemsPageState();
+}
+
+class _ProblemsPageState extends State<ProblemsPage> {
+  late final bloc = context.read<HomeBloc>();
+
+  List<ReferenceModel> allActiveTickets = [];
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.mainColorDark,
-        elevation: 0,
-        title: Text(
-          S.of(context).muammoTuriniTanlang,
-          style: TextStyle(
-              color: AppColors.textColorDark,
-              fontSize: 16.sp,
-              fontWeight: FontWeight.w500),
-        ),
-      ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/img_bg_night.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Stack(children: [
-          Positioned(
-            top: 16.h,
-            right: 16.w,
-            left: 16.w,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.w),
-              decoration: BoxDecoration(
-                  color: AppColors.mainColorDark,
-                  borderRadius: BorderRadius.circular(8.h)),
-              child: MediaQuery.removePadding(
-                context: context,
-                removeTop: true,
-                removeBottom: true,
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: 15,
-                    itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      20.verticalSpace,
-                      Text('zsdfvdrfbv $index',style: TextStyle(color: AppColors.textColorDark),),
-                      20.verticalSpace,
-                      Divider(height: 0.5.h,color: AppColors.dividerColor,)
-                    ],
-                  );
-                }),
-              ),
+    final args = ModalRoute.of(context)!.settings.arguments as ReferenceModel;
+
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, state1) {
+        final bg = state1.isDark
+            ? 'assets/images/img_bg_night.jpg'
+            : 'assets/images/img_bg_light.jpg';
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              textLocale(args.name, state1.lang),
+              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
             ),
           ),
-        ]),
-      ),
+          body: BlocConsumer<HomeBloc, HomeState>(
+            listener: (context, state) {
+              if (state.isProblemsLoaded) {
+                allActiveTickets = state.referenceChildren
+                        ?.where((element) => element.isActive == true)
+                        .toList() ??
+                    [];
+              }
+            },
+            builder: (context, state) {
+              return Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.all(16.h),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(bg),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: (state.isLoading)
+                    ? Align(
+                        alignment: Alignment.center,
+                        child: CircularProgressIndicator(
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ))
+                    : Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                        child: MediaQuery.removePadding(
+                          context: context,
+                          removeTop: true,
+                          removeBottom: true,
+                          child: ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: allActiveTickets.length,
+                              padding: EdgeInsets.symmetric(horizontal: 12.w),
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  children: [
+                                    ListTile(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                          context,
+                                          AppRoutes.CREATRE_REFERENCE,
+                                          arguments: allActiveTickets[index],
+                                        );
+                                      },
+                                      title: Text(
+                                        textLocale(allActiveTickets[index].name,
+                                            state1.lang),
+                                        style: TextStyle(
+                                          fontSize: 14.sp,
+                                        ),
+                                      ),
+                                    ),
+                                    const AppDivider(),
+                                  ],
+                                );
+                              }),
+                        ),
+                      ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

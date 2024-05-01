@@ -12,9 +12,7 @@ class _AuthApiService implements AuthApiService {
   _AuthApiService(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??= 'https://xn.technocorp.uz/';
-  }
+  });
 
   final Dio _dio;
 
@@ -25,7 +23,8 @@ class _AuthApiService implements AuthApiService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = body;
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<LoginModel>>(Options(
       method: 'POST',
@@ -45,13 +44,14 @@ class _AuthApiService implements AuthApiService {
   }
 
   @override
-  Future<HttpResponse<String>> register(string) async {
+  Future<HttpResponse<RegisterModel>> register(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = string;
-    final _result =
-        await _dio.fetch<String>(_setStreamType<HttpResponse<String>>(Options(
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<RegisterModel>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -63,19 +63,20 @@ class _AuthApiService implements AuthApiService {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data!;
+    final value = RegisterModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<String>> activeProfile(string) async {
+  Future<HttpResponse<LoginModel>> activeProfile(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = string;
-    final _result =
-        await _dio.fetch<String>(_setStreamType<HttpResponse<String>>(Options(
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<LoginModel>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -87,19 +88,20 @@ class _AuthApiService implements AuthApiService {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data!;
+    final value = LoginModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<String>> resendCode(string) async {
+  Future<HttpResponse<ResendCodeModel>> resendCode(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = string;
-    final _result =
-        await _dio.fetch<String>(_setStreamType<HttpResponse<String>>(Options(
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResendCodeModel>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -111,19 +113,50 @@ class _AuthApiService implements AuthApiService {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data!;
+    final value = ResendCodeModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<String>> loadDataUser(code) async {
+  Future<HttpResponse<PasswordRestoreModel>> passwordRestore(body) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'code': code};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<PasswordRestoreModel>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'api/password-restore',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = PasswordRestoreModel.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<LoginModel>> loadDataUser(
+    code,
+    deviceKey,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'code': code,
+      r'device_key': deviceKey,
+    };
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<String>(_setStreamType<HttpResponse<String>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<LoginModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -135,7 +168,7 @@ class _AuthApiService implements AuthApiService {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data!;
+    final value = LoginModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

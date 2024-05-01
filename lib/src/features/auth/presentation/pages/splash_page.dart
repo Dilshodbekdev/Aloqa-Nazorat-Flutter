@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import 'package:aloqa_nazorat/generated/l10n.dart';
 import 'package:aloqa_nazorat/src/config/routes/names.dart';
-import 'package:aloqa_nazorat/src/config/theme/app_colors.dart';
+import 'package:aloqa_nazorat/src/core/app_state/cubit/app_cubit.dart';
+import 'package:aloqa_nazorat/src/core/services/services.dart';
+import 'package:aloqa_nazorat/src/core/util/app_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -16,28 +17,45 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 1), () {
-      Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.SLIDER, (route) => false);
+    Future.delayed(const Duration(seconds: 5), () async {
+      final String token = await Prefs.getString(AppConstants.kToken) ?? "";
+      if (token.isNotEmpty) {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil(AppRoutes.MAIN, (route) => false);
+      } else {
+        final bool isExit = await Prefs.getBool(AppConstants.kExit) ?? false;
+        if (isExit) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil(AppRoutes.LOGIN, (route) => false);
+        } else {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            AppRoutes.SLIDER,
+            (route) => false,
+            arguments: 1,
+          );
+        }
+      }
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-          children: [
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/img_bg_night.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
+      body: Stack(alignment: Alignment.center, children: [
+        BlocBuilder<AppCubit, AppState>(
+          builder: (context, state) {
+            return Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/gif.gif'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            );
+          },
         ),
-        Column(
+        /*Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -49,7 +67,7 @@ class _SplashPageState extends State<SplashPage> {
                   fontSize: 32.sp,
                   fontWeight: FontWeight.bold),
             ),
-            Image.asset('assets/images/logo_uz.png', height: 217.h),
+            Image.asset('assets/images/img_logo_uz.png', height: 217.h),
             Text(
               textAlign: TextAlign.center,
               S.of(context).uz_com,
@@ -59,7 +77,7 @@ class _SplashPageState extends State<SplashPage> {
                   fontWeight: FontWeight.bold),
             ),
           ],
-        )
+        )*/
       ]),
     );
   }
