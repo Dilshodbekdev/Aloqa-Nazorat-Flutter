@@ -34,7 +34,7 @@ class _OneIdPageState extends State<OneIdPage> {
           },
           onNavigationRequest: (NavigationRequest request) {
             String url = request.url;
-            print(url);
+            debugPrint(url);
             if (url.contains(
                 "https://murojaat.gis.uz/api/one-id/432fdsfHHDSFG213__LL-123QWE?code=")) {
               int index1 = url.indexOf("code=");
@@ -65,8 +65,7 @@ class _OneIdPageState extends State<OneIdPage> {
           if (state.isOneIdVerified) {
             _webViewController.clearCache();
             _webViewController.clearLocalStorage();
-            Navigator.of(context)
-                .pushNamedAndRemoveUntil(AppRoutes.MAIN, (route) => false);
+            Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.MAIN, (route) => false);
           }
         },
         builder: (context, state) {

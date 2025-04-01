@@ -246,8 +246,7 @@ class _ProfilePageState extends State<ProfilePage> {
       body: FutureBuilder(
         future: Prefs.getString(AppConstants.kUser),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done &&
-              snapshot.data != null) {
+          if (snapshot.connectionState == ConnectionState.done && snapshot.data != null) {
             userData = UserData.fromJson(jsonDecode(snapshot.data!));
           }
           return BlocConsumer<ProfileBloc, ProfileState>(

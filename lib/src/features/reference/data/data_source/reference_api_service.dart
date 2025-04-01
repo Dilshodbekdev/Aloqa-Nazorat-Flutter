@@ -2,6 +2,7 @@ import 'package:aloqa_nazorat/src/features/reference/data/models/ticket_model.da
 import 'package:aloqa_nazorat/src/features/reference/data/models/tickets_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/dio.dart';
+import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
 part 'reference_api_service.g.dart';

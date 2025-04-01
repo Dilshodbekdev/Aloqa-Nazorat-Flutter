@@ -171,10 +171,6 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                                   preFilledWidget: preFilledWidget,
                                   defaultPinTheme: defaultPinTheme,
                                   pinAnimationType: PinAnimationType.slide,
-                                  androidSmsAutofillMethod:
-                                      AndroidSmsAutofillMethod
-                                          .smsUserConsentApi,
-                                  listenForMultipleSmsOnAndroid: true,
                                   separatorBuilder: (index) =>
                                       const SizedBox(width: 8),
                                   hapticFeedbackType:

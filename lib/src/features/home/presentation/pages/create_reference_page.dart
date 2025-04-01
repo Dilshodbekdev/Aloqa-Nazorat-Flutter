@@ -306,11 +306,8 @@ class _CreateReferencePageState extends State<CreateReferencePage> {
                                       8.horizontalSpace,
                                       Expanded(
                                           child: Text(
-                                        S
-                                            .of(context)
-                                            .hurmatliFoydalanuvchiMurojaatingizniKoribChiqishnitaminlashUchunOzManzilingizniTogriVa,
-                                        style: TextStyle(
-                                            fontSize: 12.sp, color: Colors.red),
+                                        S.of(context).hurmatliFoydalanuvchiMurojaatingizniKoribChiqishnitaminlashUchunOzManzilingizniTogriVa,
+                                        style: TextStyle(fontSize: 12.sp, color: Colors.red),
                                       )),
                                     ],
                                   ),
